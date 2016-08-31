@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.qingyuan.sale.core.dao.ProductionSortMapper" >
+  <resultMap id="BaseResultMap" type="org.qingyuan.sale.core.model.ProductionSort" >
+    <id column="sn" property="sn" jdbcType="INTEGER" />
+    <result column="sid" property="sid" jdbcType="VARCHAR" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="utime" property="utime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, sid, sname, status, ctime, utime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p_sort
+    where sn = #{sn,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p_sort
+    where sn = #{sn,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.qingyuan.sale.core.model.ProductionSort" >
+    insert into p_sort (sn, sid, sname, 
+      status, ctime, utime
+      )
+    values (#{sn,jdbcType=INTEGER}, #{sid,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP}, #{utime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.qingyuan.sale.core.model.ProductionSort" >
+    insert into p_sort
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="sname != null" >
+        sname,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="utime != null" >
+        utime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utime != null" >
+        #{utime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.qingyuan.sale.core.model.ProductionSort" >
+    update p_sort
+    <set >
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utime != null" >
+        utime = #{utime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.qingyuan.sale.core.model.ProductionSort" >
+    update p_sort
+    set sid = #{sid,jdbcType=VARCHAR},
+      sname = #{sname,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      utime = #{utime,jdbcType=TIMESTAMP}
+    where sn = #{sn,jdbcType=INTEGER}
+  </update>
+</mapper>

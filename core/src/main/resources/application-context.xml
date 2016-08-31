@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task 
+       http://www.springframework.org/schema/task/spring-task.xsd ">
+
+
+	<!-- 引入参数文件 -->
+	<context:property-placeholder location="classpath:example-dev.properties" />
+	
+	<!-- 扫描组件 -->
+	<context:component-scan base-package="org.qingyuan.sale.core" />
+	
+	<!-- Activates scanning of @Autowired -->
+    <context:annotation-config/>
+    
+	<!-- 引入配置文件 -->
+	<import resource="spring-mvc.xml" />
+	<import resource="spring-cache.xml" />
+	<import resource="spring-mybatis.xml" />
+
+<!-- 	<bean id="dispatchJobManager" class="com.ftpms.business.dispatch.DispatchJobManager" />
+	<task:executor id="executor" pool-size="5" />
+	<task:scheduler id="scheduler" pool-size="10" />
+	<task:annotation-driven executor="executor"
+		scheduler="scheduler" />
+	<task:scheduled-tasks>
+		<task:scheduled ref="dispatchJobManager" method="workRun"
+			cron="0 03 23 * * ?" />每天11点18分执行任务 0 18 11 * * ?
+	</task:scheduled-tasks>
+	表示在什么时候进行任务调度 -->
+
+
+
+</beans>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.qingyuan.sale.core.dao.ProductionMapper" >
+  <resultMap id="BaseResultMap" type="org.qingyuan.sale.core.model.Production" >
+    <id column="sn" property="sn" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="pname" property="pname" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="cid" property="cid" jdbcType="VARCHAR" />
+    <result column="sid" property="sid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="utime" property="utime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, pid, pname, cost, price, cid, sid, status, ctime, utime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p_production
+    where sn = #{sn,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p_production
+    where sn = #{sn,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.qingyuan.sale.core.model.Production" >
+    insert into p_production (sn, pid, pname, 
+      cost, price, cid, sid, 
+      status, ctime, utime
+      )
+    values (#{sn,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, #{pname,jdbcType=VARCHAR}, 
+      #{cost,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, #{cid,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP}, #{utime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.qingyuan.sale.core.model.Production" >
+    insert into p_production
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="pname != null" >
+        pname,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="utime != null" >
+        utime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utime != null" >
+        #{utime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.qingyuan.sale.core.model.Production" >
+    update p_production
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="pname != null" >
+        pname = #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utime != null" >
+        utime = #{utime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.qingyuan.sale.core.model.Production" >
+    update p_production
+    set pid = #{pid,jdbcType=VARCHAR},
+      pname = #{pname,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      cid = #{cid,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      utime = #{utime,jdbcType=TIMESTAMP}
+    where sn = #{sn,jdbcType=INTEGER}
+  </update>
+</mapper>
