@@ -43,7 +43,7 @@ public class Main {
 	// Context路径
 	private static final String CONTEXT_PATH = "/";
 	// Mapping路径
-	private static final String MAPPING_URL = "*";
+	private static final String MAPPING_URL = "/";
 	// 应用配置路径
 	private static final String CONFIG_PATH = "classpath:application-context.xml";
 	// 执行环境

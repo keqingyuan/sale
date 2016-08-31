@@ -21,25 +21,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-
 /**
-* <p>
-* @className:PublicController.java
-* @classDescription:
-* <p>
-* @createTime:2016年8月31日
-* @author:Qingyuan
-*/
+ * <p>
+ * 
+ * @className:PublicController.java
+ * @classDescription:
+ *                    <p>
+ * @createTime:2016年8月31日
+ * @author:Qingyuan
+ */
 
 @Controller
-@RequestMapping("/p")
-public class PublicController {
+@RequestMapping("/p/{codebar}")
+public class ProductionController {
 
 	@Autowired private ProductionService productionService;
-	
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/a", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public @ResponseBody Production add(@RequestBody Production production) {
+	public @ResponseBody Production add(@PathVariable String codebar, @RequestBody Production production) {
+		production.setCid(codebar);
 		return productionService.add(production);
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody Production get(@PathVariable String codebar) {
+		return productionService.getProduction(codebar);
 	}
 }
